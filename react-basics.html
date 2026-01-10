@@ -4,19 +4,24 @@
     <title>React Basics</title>
   </head>
   <body>
+    <!-- 01- 02를여기에 씌운다 -->
     <div class="js-container"></div>
-    <!-- 웹에있는 콘솔텍스트 불러오기 -->
-    <script src="https://unpkg.com/supersimpledev/external-library.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      const container = document.querySelector(".js-container");
-      ReactDOM.createRoot(container).render(
-        "Welcome to SuperSimpleDev React Course"
+      const div = (
+        <div>
+          <button>hello</button>
+          <p>paragraph of text {2 + 5}</p>
+        </div>
       );
+
+      // 02- react 설정/사용
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(div);
     </script>
   </body>
 </html>
