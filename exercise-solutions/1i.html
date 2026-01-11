@@ -14,8 +14,8 @@
     <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 
     <script type="text/babel">
-      // console.log(dayjs().format("MMMM D"));
-      const p = dayjs().format("MMMM D");
+      const time = dayjs().format("HH:mm:ss");
+      const p = <p>Current time: {time}</p>;
       const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(p);
     </script>
