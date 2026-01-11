@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <!--추가-->
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script type="text/babel">
+      const p = <p>Current time: {dayjs().format("HH:mm:ss")}</p>;
+      const container = document.querySelector(".js-container");
+      // root가 container보다 아래있어야함.
+      // 왜? root는 container라는 실제 DOM이 이미 존재해야만 작동한다.
+      const root = ReactDOM.createRoot(container);
+      root.render(p);
+
+      setInterval(() => {
+        const p = <p>Current time: {dayjs().format("HH:mm:ss")}</p>;
+        root.render(p);
+      }, 1000);
+    </script>
+  </body>
+</html>
