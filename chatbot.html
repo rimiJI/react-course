@@ -11,14 +11,23 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+      function ChatInput() {
+        return (
+          <div>
+            <input />
+            <button>Send</button>
+          </div>
+        );
+      }
       const div = (
         <div>
-          <button>hello</button>
-          <p>paragraph of text {2 + 5}</p>
+          // 셋다같은것
+          {ChatInput()}
+          <ChatInput></ChatInput>
+          <ChatInput />
         </div>
       );
 
-      // 02- react 설정/사용
       const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(div);
     </script>
