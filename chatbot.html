@@ -20,25 +20,43 @@
         );
       }
 
-      function ChatMassage(props) {
-        const message = props.message;
+      function ChatMassage({ message, sender }) {
+        // const message = props.message;
+        // const sender = props.sender;
+        // const { message, sender } = props;
+
+        /*         
+        if (sender === "robot") {
+          return (
+            <div>
+              <img src="robot.png" width="50" />
+              {message}
+            </div>
+          );
+        } 
+          */
         return (
           <div>
+            {sender === "robot" && <img src="robot.png" width="50" />}
             {message}
-            <img src="user.png" width="50" />
+            {sender === "user" && <img src="user.png" width="50" />}
           </div>
         );
+      }
+
+      function Add() {
+        return;
       }
 
       const app = (
         <>
           <ChatInput />
-          <ChatMassage message="hello chatbot!" />
-          <ChatMassage message="Hello! How can I help you?" />
-          <ChatMassage message="can you get me todays date?" />
-          <ChatMassage message="Today is January 13" />
-          <ChatMassage message="how about flip a coin" />
-          <ChatMassage message="Sure! You got heads" />
+          <ChatMassage message="hello chatbot!" sender="user" />
+          <ChatMassage message="Hello! How can I help you?" sender="robot" />
+          <ChatMassage message="can you get me todays date?" sender="user" />
+          <ChatMassage message="Today is January 13" sender="robot" />
+          <ChatMassage message="how about flip a coin" sender="user" />
+          <ChatMassage message="Sure! You got heads" sender="robot" />
         </>
       );
 
