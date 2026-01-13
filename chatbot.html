@@ -44,24 +44,34 @@
         );
       }
 
-      function Add() {
-        return;
+      function App() {
+        return (
+          <>
+            <ChatInput />
+            <ChatMassage message="hello chatbot!" sender="user" />
+            <ChatMassage message="Hello! How can I help you?" sender="robot" />
+            <ChatMassage message="can you get me todays date?" sender="user" />
+            <ChatMassage message="Today is January 13" sender="robot" />
+            <ChatMassage message="how about flip a coin" sender="user" />
+            <ChatMassage message="Sure! You got heads" sender="robot" />
+          </>
+        );
       }
 
-      const app = (
-        <>
-          <ChatInput />
-          <ChatMassage message="hello chatbot!" sender="user" />
-          <ChatMassage message="Hello! How can I help you?" sender="robot" />
-          <ChatMassage message="can you get me todays date?" sender="user" />
-          <ChatMassage message="Today is January 13" sender="robot" />
-          <ChatMassage message="how about flip a coin" sender="user" />
-          <ChatMassage message="Sure! You got heads" sender="robot" />
-        </>
-      );
+      // const app = (
+      //   <>
+      //     <ChatInput />
+      //     <ChatMassage message="hello chatbot!" sender="user" />
+      //     <ChatMassage message="Hello! How can I help you?" sender="robot" />
+      //     <ChatMassage message="can you get me todays date?" sender="user" />
+      //     <ChatMassage message="Today is January 13" sender="robot" />
+      //     <ChatMassage message="how about flip a coin" sender="user" />
+      //     <ChatMassage message="Sure! You got heads" sender="robot" />
+      //   </>
+      // );
 
       const container = document.querySelector(".js-container");
-      ReactDOM.createRoot(container).render(app);
+      ReactDOM.createRoot(container).render(<App />);
     </script>
   </body>
 </html>
