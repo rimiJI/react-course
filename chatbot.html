@@ -13,20 +13,37 @@
     <script type="text/babel">
       function ChatInput() {
         return (
-          <div>
-            <input />
+          <>
+            <input placeholder="Send a message to Chatbot" size="30" />
             <button>Send</button>
+          </>
+        );
+      }
+
+      function ChatMassage(props) {
+        const message = props.message;
+        return (
+          <div>
+            {message}
+            <img src="user.png" width="50" />
           </div>
         );
       }
-      const div = (
-        <div>
+
+      const app = (
+        <>
           <ChatInput />
-        </div>
+          <ChatMassage message="hello chatbot!" />
+          <ChatMassage message="Hello! How can I help you?" />
+          <ChatMassage message="can you get me todays date?" />
+          <ChatMassage message="Today is January 13" />
+          <ChatMassage message="how about flip a coin" />
+          <ChatMassage message="Sure! You got heads" />
+        </>
       );
 
       const container = document.querySelector(".js-container");
-      ReactDOM.createRoot(container).render(div);
+      ReactDOM.createRoot(container).render(app);
     </script>
   </body>
 </html>
