@@ -11,44 +11,25 @@
 
     <script type="text/babel">
       function ProductDetails({ name, price, discountPrice }) {
-        const result = discountPrice ? (
+        return (
           <>
             <p>{name}</p>
-            <del>
-              <p>Price: ${price}</p>
-            </del>
-            <p>Discount Price: ${discountPrice}</p>
-            <button>Add to Cart</button>
-          </>
-        ) : (
-          <>
-            <p>{name}</p>
-            <p>Price: ${price}</p>
+            {discountPrice ? (
+              <>
+                <del>
+                  <p>Price: ${price}</p>
+                </del>
+                <p>Discount Price: ${discountPrice}</p>
+              </>
+            ) : (
+              <>
+                <p>Price: ${price}</p>
+              </>
+            )}
+
             <button>Add to Cart</button>
           </>
         );
-        return result;
-
-        //     if (discountPrice) {
-        //       return (
-        //         <>
-        //           <p>{name}</p>
-        //           <del>
-        //             <p>Price: ${price}</p>
-        //           </del>
-        //           <p>Discount Price: ${discountPrice}</p>
-        //           <button>Add to Cart</button>
-        //         </>
-        //       );
-        //     }
-
-        //     return (
-        //       <>
-        //         <p>{name}</p>
-        //         <p>Price: ${price}</p>
-        //         <button>Add to Cart</button>
-        //       </>
-        //     );
       }
 
       function App() {
