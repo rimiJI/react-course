@@ -11,11 +11,23 @@
 
     <script type="text/babel">
       function ProductDetails({ name, price, discountPrice }) {
+        if (discountPrice) {
+          return (
+            <>
+              <p>{name}</p>
+              <del>
+                <p>Price: ${price}</p>
+              </del>
+              <p>Discount Price: ${discountPrice}</p>
+              <button>Add to Cart</button>
+            </>
+          );
+        }
+
         return (
           <>
             <p>{name}</p>
             <p>Price: ${price}</p>
-            <p>Discount Price: ${discountPrice}</p>
             <button>Add to Cart</button>
           </>
         );
