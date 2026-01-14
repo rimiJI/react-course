@@ -45,7 +45,7 @@
       }
 
       function ChatMessages() {
-        const chatMessages = [
+        React.useState([
           {
             message: "hello chatbot!",
             sender: "user",
@@ -66,9 +66,22 @@
             sender: "robot",
             id: "id4",
           },
-        ];
+        ]);
+
+        function sendMessage() {
+          chatMessages.push({
+            //리스트 끝에 obj 추가
+            message: "test",
+            sender: "user",
+            id: crypto.randomUUID(),
+          });
+
+          console.log(chatMessages);
+        }
+
         return (
           <>
+            <button onClick={sendMessage}>Send message</button>
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
