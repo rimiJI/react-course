@@ -60,8 +60,6 @@
       }
 
       function ChatMessage({ message, sender }) {
-        const [] = React.useState();
-
         return (
           <div>
             {sender === "robot" && <img src="robot.png" width="50" />}
@@ -87,7 +85,9 @@
         );
       }
 
+      //전체 채팅의 유일한 데이터 소유자
       function App() {
+        //chatMessages = 채팅 기록 전부 //setChatMessages = “이 데이터 바꾸는 버튼”
         const [chatMessages, setChatMessages] = React.useState([
           {
             message: "hello chatbot!",
