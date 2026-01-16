@@ -8,9 +8,22 @@
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
-    <script type="text/babel">
-      function App() {}
 
+    <script type="text/babel">
+      function App() {
+        const [count, setCount] = React.useState(0);
+
+        function increase() {
+          setCount(count + 1);
+        }
+
+        return (
+          <>
+            <p>현재 숫자: {count}</p>
+            <button onClick={increase}>+1 증가</button>
+          </>
+        );
+      }
       const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(<App />);
     </script>
