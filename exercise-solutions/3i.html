@@ -48,9 +48,9 @@
           setInputText("");
         }
         //조금 어려움
-        function handleKeyDown() {
+        function handleKeyDown(event) {
           if (event.key === "Enter") {
-            sendMassage();
+            sendMessage();
           }
         }
 
@@ -73,9 +73,9 @@
         // 아래 === &&는 “결정”이 아니라 조건 표현
         return (
           <div>
-            {sender === "robot" && <img src="robot.png" width="50" />}
+            {sender === "robot" && <img src="../robot.png" width="50" />}
             {message}
-            {sender === "user" && <img src="user.png" width="50" />}
+            {sender === "user" && <img src="../user.png" width="50" />}
           </div>
         );
       }
