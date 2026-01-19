@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <!-- 1️⃣브라우저 레벨에서 딱 한 번 일어나는 일 -->
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      // 4️⃣ ChatInput은 ‘손’ (입력 담당)
+      function ChatInput({ chatMessages, setChatMessages }) {
+        const [inputText, setInputText] = React.useState(""); //이건 임시 메모리
+
+        function saveInputText(event) {
+          setInputText(event.target.value);
+          //console.log(event.target.value);
+        }
+
+        function sendMessage() {
+          const newChatMessages = [
+            ...chatMessages,
+            {
+              message: inputText,
+              sender: "user",
+              id: crypto.randomUUID(),
+            },
+          ];
+          console.log(inputText);
+          setChatMessages(newChatMessages);
+
+          // console.log(response);
+          const response = Chatbot.getResponse(inputText);
+          setChatMessages([
+            ...newChatMessages,
+            {
+              message: response,
+              sender: "robot",
+              id: crypto.randomUUID(),
+            },
+          ]);
+
+          setInputText("");
+        }
+
+        return (
+          <>
+            <input
+              placeholder="Send a message to Chatbot"
+              size="30"
+              onChange={saveInputText}
+              value={inputText}
+            />
+            <button onClick={sendMessage}>Send</button>
+          </>
+        );
+      }
+
+      // 5️⃣ ChatMessage는 ‘눈’ (메시지 하나하나를 보여주는 역할)
+      function ChatMessage({ message, sender }) {
+        // 아래 === &&는 “결정”이 아니라 조건 표현
+        return (
+          <div>
+            {sender === "robot" && <img src="robot.png" width="50" />}
+            {message}
+            {sender === "user" && <img src="user.png" width="50" />}
+          </div>
+        );
+      }
+
+      // 6️⃣ ChatMessages는 ‘입’ (메시지 목록을 보여주는 역할)
+      function ChatMessages({ chatMessages, setChatMessages }) {
+        return (
+          <>
+            {chatMessages.map((chatMessage) => {
+              return (
+                <ChatMessage
+                  message={chatMessage.message}
+                  sender={chatMessage.sender}
+                  key={chatMessage.id}
+                />
+              );
+            })}
+          </>
+        );
+      }
+
+      //2️⃣ App은 “데이터 창고 + 통제실” //전체 채팅의 유일한 데이터 소유자
+      function App() {
+        //chatMessages = 채팅 기록 전부 //setChatMessages = “이 데이터 바꾸는 버튼”
+        const [chatMessages, setChatMessages] = React.useState([
+          {
+            message: "hello chatbot!",
+            sender: "user",
+            id: "id1",
+          },
+          {
+            message: "Hello! How can I help you?",
+            sender: "robot",
+            id: "id2",
+          },
+          {
+            message: "can you get me todays date?",
+            sender: "user",
+            id: "id3",
+          },
+          {
+            message: "Today is January 13",
+            sender: "robot",
+            id: "id4",
+          },
+        ]);
+        // 3️⃣ App은 화면을 직접 만들지 않는다 (아래가 핵심)
+        return (
+          <>
+            <ChatInput
+              chatMessages={chatMessages}
+              setChatMessages={setChatMessages}
+            />
+            <ChatMessages
+              chatMessages={chatMessages}
+              setChatMessages={setChatMessages}
+            />
+          </>
+        );
+      }
+
+      //1️⃣브라우저 레벨에서 딱 한 번 일어나는 일
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
