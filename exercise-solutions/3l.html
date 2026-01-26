@@ -24,6 +24,7 @@
         }
 
         async function sendMessage() {
+          setInputText("");
           const newChatMessages = [
             ...chatMessages,
             {
@@ -33,9 +34,20 @@
             },
           ];
           console.log(inputText);
-          setChatMessages(newChatMessages);
-
+          // setChatMessages(newChatMessages);
+          setChatMessages([
+            ...newChatMessages,
+            // This creates a temporary Loading... message.
+            // Because we don't save this message in newChatMessages,
+            // it will be remove later, when we add the response.
+            {
+              message: "Loading...",
+              sender: "robot",
+              id: crypto.randomUUID(),
+            },
+          ]);
           // console.log(response);
+
           const response = await Chatbot.getResponseAsync(inputText);
           setChatMessages([
             ...newChatMessages,
@@ -46,7 +58,7 @@
             },
           ]);
 
-          setInputText("");
+          // setInputText("");
         }
         //조금 어려움
         function handleKeyDown(event) {
