@@ -4,7 +4,25 @@
     <title>Chatbot</title>
     <style>
       .send-button {
-        background-color: rgb(38, 173, 128);
+        background-color: rgb(25, 135, 84);
+        color: aliceblue;
+        padding: 12px 50px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        cursor: pointer;
+      }
+      .chat-input {
+        padding: 12px 15px;
+        border-radius: 10px;
+        border-width: 1px;
+        border-color: rgb(231, 231, 231);
+        /* background-color: rgb(255, 255, 255); */
+        font-size: 15px;
+      }
+      .chat-input-container {
+        display: flex;
       }
     </style>
   </head>
@@ -74,18 +92,19 @@
         }
 
         return (
-          <>
+          <div className="chat-input-container">
             <input
               placeholder="Send a message to Chatbot"
               size="30"
               onChange={saveInputText}
               onKeyDown={handleKeyDown}
               value={inputText}
+              className="chat-input"
             />
             <button onClick={sendMessage} className="send-button">
               Send
             </button>
-          </>
+          </div>
         );
       }
 
