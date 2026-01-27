@@ -3,6 +3,9 @@
   <head>
     <title>Chatbot</title>
     <style>
+      body {
+        font-family: Helvetica, sans-serif;
+      }
       .send-button {
         background-color: rgb(25, 135, 84);
         color: aliceblue;
@@ -14,15 +17,41 @@
         cursor: pointer;
       }
       .chat-input {
-        padding: 12px 15px;
+        padding: 12px;
         border-radius: 10px;
         border-width: 1px;
         border-color: rgb(231, 231, 231);
         /* background-color: rgb(255, 255, 255); */
         font-size: 15px;
+
+        flex-grow: 1;
       }
       .chat-input-container {
         display: flex;
+      }
+      .app-container {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .chat-message-user {
+        display: flex;
+        justify-content: end;
+        align-items: start;
+      }
+      .chat-message-robot {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+      }
+      .chat-message-text {
+        background-color: rgb(221, 221, 221);
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-top: 20px;
+        max-width: 300px;
       }
     </style>
   </head>
@@ -112,9 +141,13 @@
       function ChatMessage({ message, sender }) {
         // 아래 === &&는 “결정”이 아니라 조건 표현
         return (
-          <div>
+          <div
+            className={
+              sender === "user" ? "chat-message-user" : "chat-message-robot"
+            }
+          >
             {sender === "robot" && <img src="../robot.png" width="50" />}
-            {message}
+            <div className="chat-message-text">{message}</div>
             {sender === "user" && <img src="../user.png" width="50" />}
           </div>
         );
@@ -164,7 +197,7 @@
         ]);
         // 3️⃣ App은 화면을 직접 만들지 않는다 (아래가 핵심)
         return (
-          <>
+          <div className="app-container">
             <ChatInput
               chatMessages={chatMessages}
               setChatMessages={setChatMessages}
@@ -173,7 +206,7 @@
               chatMessages={chatMessages}
               setChatMessages={setChatMessages}
             />
-          </>
+          </div>
         );
       }
 
