@@ -174,8 +174,16 @@
 
       // 6️⃣ ChatMessages는 ‘입’ (메시지 목록을 보여주는 역할)
       function ChatMessages({ chatMessages, setChatMessages }) {
+        const chatMessagesRef = React.useRef(null);
+        React.useEffect(() => {
+          const containerElem = chatMessagesRef.current;
+          if (containerElem) {
+            containerElem.scrollTop = containerElem.scrollHeight;
+          }
+        }, [chatMessages]);
+
         return (
-          <div className="chat-message-container">
+          <div className="chat-message-container" ref={chatMessagesRef}>
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
